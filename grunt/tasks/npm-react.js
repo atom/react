@@ -47,8 +47,8 @@ function packRelease() {
     }
   };
   grunt.util.spawn(spawnCmd, function() {
-    var src = 'build/react-' + grunt.config.data.pkg.version + '.tgz'
-    var dest = 'build/react.tgz';
+    var src = 'build/react-atom-fork-' + grunt.config.data.pkg.version + '.tgz'
+    var dest = 'build/react-atom-fork.tgz';
     fs.rename(src, dest, done);
   });
 }

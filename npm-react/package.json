@@ -1,6 +1,6 @@
 {
-  "name": "react",
-  "description": "React is a JavaScript library for building user interfaces.",
+  "name": "react-atom-fork",
+  "description": "Minimal, Atom-specific fork of React. Allows us to opt out of selection restoration.",
   "version": "0.10.0",
   "keywords": [
     "react"
