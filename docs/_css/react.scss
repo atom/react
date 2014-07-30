@@ -4,9 +4,9 @@
 @import '_solarized';
 
 @mixin code-typography {
-  font-family: 'source-code-pro', Menlo, 'Courier New', Consolas, monospace;
-  font-size: 13px;
-  line-height: 20px;
+  font-family: 'source-code-pro', Menlo, Consolas, 'Courier New', monospace;
+  font-size: 0.8em;
+  line-height: 1.5;
 }
 
 $skinnyContentWidth: 650px;
@@ -224,10 +224,11 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
   }
   ul ul {
-    margin-left: 20px;
+    margin: 6px 0 0 20px;
   }
   li {
-    margin: 0;
+    line-height: 16px;
+    margin: 0 0 6px;
   }
   h3 {
     text-transform: uppercase;
@@ -454,6 +455,11 @@ section.black content {
   padding-top: 20px;
   width: 1220px;
 
+  label.compiler-option {
+    display: block;
+    margin-top: 5px;
+  }
+
   #jsxCompiler {
     margin-top: 20px;
   }
@@ -558,6 +564,19 @@ figure {
 .nosidebar .inner-content {
   float: none;
   margin: 0 auto;
+}
+
+h1 {
+  // Contains .edit-page-link
+  @include clearfix;
+}
+
+.edit-page-link {
+  float: right;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 20px;
+  margin-top: 17px;
 }
 
 /* Blog */
@@ -683,7 +702,12 @@ p code {
 }
 
 .highlight pre code {
-  font-size: inherit;
+  /* Respect line-height defined in <code> styles above */
+  display: block;
+
+  /* Cancel out styles for `li code` in case we have a <pre> within an <li>. */
+  background: none;
+  padding: 0;
 }
 
 .highlight pre .lineno {

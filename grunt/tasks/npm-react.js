@@ -7,6 +7,11 @@ var src = 'npm-react/';
 var dest = 'build/npm-react/';
 var modSrc = 'build/modules/';
 var lib = dest + 'lib/';
+var dist = dest + 'dist/';
+var distFiles = [
+  'react.js', 'react.min.js', 'JSXTransformer.js',
+  'react-with-addons.js', 'react-with-addons.min.js'
+];
 
 function buildRelease() {
   // delete build/react-core for fresh start
@@ -31,6 +36,12 @@ function buildRelease() {
     }
   });
 
+  // Make built source available inside npm package
+  grunt.file.mkdir(dist);
+  distFiles.forEach(function(file) {
+    grunt.file.copy('build/' + file, dist + file);
+  });
+
   // modify build/react-core/package.json to set version ##
   var pkg = grunt.file.readJSON(dest + 'package.json');
   pkg.version = grunt.config.data.pkg.version;
@@ -38,6 +49,7 @@ function buildRelease() {
 }
 
 function packRelease() {
+  /*jshint validthis:true */
   var done = this.async();
   var spawnCmd = {
     cmd: 'npm',
@@ -47,7 +59,7 @@ function packRelease() {
     }
   };
   grunt.util.spawn(spawnCmd, function() {
-    var src = 'build/react-atom-fork-' + grunt.config.data.pkg.version + '.tgz'
+    var src = 'build/react-atom-fork-' + grunt.config.data.pkg.version + '.tgz';
     var dest = 'build/react-atom-fork.tgz';
     fs.rename(src, dest, done);
   });

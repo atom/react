@@ -20,15 +20,14 @@ module.exports = function(grunt) {
     copy: require('./grunt/config/copy'),
     jsx: require('./grunt/config/jsx'),
     browserify: require('./grunt/config/browserify'),
-    populist: require('./grunt/config/populist'),
+    populist: require('./grunt/config/populist')(grunt),
     connect: require('./grunt/config/server')(grunt),
     "webdriver-jasmine": require('./grunt/config/webdriver-jasmine'),
     "webdriver-perf": require('./grunt/config/webdriver-perf'),
     npm: require('./grunt/config/npm'),
     clean: ['./build', './*.gem', './docs/_site', './examples/shared/*.js', '.module-cache'],
     jshint: require('./grunt/config/jshint'),
-    compare_size: require('./grunt/config/compare_size'),
-    complexity: require('./grunt/config/complexity')
+    compare_size: require('./grunt/config/compare_size')
   });
 
   grunt.config.set('compress', require('./grunt/config/compress'));
@@ -67,7 +66,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('npm-react:release', npmReactTasks.buildRelease);
   grunt.registerTask('npm-react:pack', npmReactTasks.packRelease);
-  grunt.registerTask('npm-react-tools:pack', npmReactToolsTasks.pack);
+  grunt.registerTask('npm-react-tools:release', npmReactToolsTasks.buildRelease);
+  grunt.registerTask('npm-react-tools:pack', npmReactToolsTasks.packRelease);
 
   grunt.registerTask('version-check', versionCheckTask);
 
@@ -150,6 +150,18 @@ module.exports = function(grunt) {
     'webdriver-jasmine:saucelabs_' + (process.env.BROWSER_NAME || 'ie8')
   ]);
 
+  grunt.registerTask('test:webdriver:saucelabs:modern', [
+    'build:test',
+    'build:basic',
+
+    'connect',
+    'sauce-tunnel',
+    'webdriver-jasmine:saucelabs_android',
+    'webdriver-jasmine:saucelabs_firefox',
+    'webdriver-jasmine:saucelabs_chrome',
+    'webdriver-jasmine:saucelabs_ie11'
+  ]);
+
   grunt.registerTask('test:webdriver:saucelabs:ie', [
     'build:test',
     'build:basic',
@@ -179,6 +191,13 @@ module.exports = function(grunt) {
     'test:webdriver:phantomjs',
     'coverage:parse'
   ]);
+  grunt.registerTask('fasttest', function() {
+    if (grunt.option('debug')) {
+      grunt.task.run('build:test', 'connect:server:keepalive');
+    } else {
+      grunt.task.run('build:test', 'test:webdriver:phantomjs');
+    }
+  });
   grunt.registerTask('test', function() {
     if (grunt.option('debug')) {
       grunt.task.run('build:test', 'build:basic', 'connect:server:keepalive');
@@ -202,6 +221,7 @@ module.exports = function(grunt) {
     'browserify:addonsMin',
     'npm-react:release',
     'npm-react:pack',
+    'npm-react-tools:release',
     'npm-react-tools:pack',
     'copy:react_docs',
     'compare_size'

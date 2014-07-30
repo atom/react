@@ -31,8 +31,8 @@ thead time title tr track u ul var video wbr
 The following SVG elements are supported:
 
 ```
-circle defs g line linearGradient path polygon polyline radialGradient rect
-stop svg text
+circle defs ellipse g line linearGradient mask path pattern polygon polyline
+radialGradient rect stop svg text tspan
 ```
 
 You may also be interested in [react-art](https://github.com/facebook/react-art), a drawing library for React that can render to Canvas, SVG, or VML (for IE8).
@@ -55,23 +55,30 @@ These standard attributes are supported:
 ```
 accept accessKey action allowFullScreen allowTransparency alt async
 autoComplete autoFocus autoPlay cellPadding cellSpacing charSet checked
-className colSpan cols content contentEditable contextMenu controls data
-dateTime defer dir disabled draggable encType form formNoValidate frameBorder
-height hidden href htmlFor httpEquiv icon id label lang list loop max
-maxLength method min multiple name noValidate pattern placeholder poster
-preload radioGroup readOnly rel required role rowSpan rows sandbox scope
-scrollLeft scrollTop seamless selected size span spellCheck src srcDoc step
-style tabIndex target title type value width wmode
+className cols colSpan content contentEditable contextMenu controls coords
+crossOrigin data dateTime defer dir disabled download draggable encType form
+formNoValidate frameBorder height hidden href hrefLang htmlFor httpEquiv icon
+id label lang list loop max maxLength mediaGroup method min multiple muted
+name noValidate pattern placeholder poster preload radioGroup readOnly rel
+required role rows rowSpan sandbox scope scrollLeft scrolling scrollTop
+seamless selected shape size span spellCheck src srcDoc srcSet start step
+style tabIndex target title type useMap value width wmode
 ```
 
-In addition, the non-standard `autoCapitalize` and `autoCorrect` attributes are supported for Mobile Safari, and the `property` attribute is supported for Open Graph `<meta>` tags.
+In addition, the following non-standard attributes are supported:
+
+- `autoCapitalize autoCorrect` for Mobile Safari.
+- `property` for [Open Graph](http://ogp.me/) meta tags.
+- `itemProp itemScope itemType` for [HTML5 microdata](http://schema.org/docs/gs.html).
 
 There is also the React-specific attribute `dangerouslySetInnerHTML` ([more here](/react/docs/special-non-dom-attributes.html)), used for directly inserting HTML strings into a component.
 
 ### SVG Attributes
 
 ```
-cx cy d fill fx fy gradientTransform gradientUnits offset points r rx ry
-spreadMethod stopColor stopOpacity stroke strokeLinecap strokeWidth textAnchor transform
-version viewBox x1 x2 x y1 y2 y
+cx cy d dx dy fill fillOpacity fontFamily fontSize fx fy gradientTransform
+gradientUnits markerEnd markerMid markerStart offset opacity
+patternContentUnits patternUnits points preserveAspectRatio r rx ry
+spreadMethod stopColor stopOpacity stroke strokeDasharray strokeLinecap
+strokeOpacity strokeWidth textAnchor transform version viewBox x1 x2 x y1 y2 y
 ```

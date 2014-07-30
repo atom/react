@@ -1,7 +1,7 @@
 {
   "name": "react-atom-fork",
   "description": "Minimal, Atom-specific fork of React. Allows us to opt out of selection restoration.",
-  "version": "0.10.0",
+  "version": "0.11.1",
   "keywords": [
     "react"
   ],
@@ -17,6 +17,7 @@
     "README.md",
     "addons.js",
     "react.js",
+    "dist/",
     "lib/"
   ],
   "main": "react.js",
@@ -27,8 +28,8 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "peerDependencies": {
-    "envify": "~1.2.0"
+  "dependencies": {
+    "envify": "^2.0.0"
   },
   "browserify": {
     "transform": ["envify"]

@@ -2,12 +2,15 @@
 language: node_js
 node_js:
 - '0.10'
+cache:
+  directories:
+  - node_modules
 script:
 - |
     grunt $TEST_TYPE
 after_script:
 - |
-    if [ "$TEST_TYPE" = test:full ] && [ "$SERVER" ]; then
+    if [ "$TEST_TYPE" = test ] && [ "$SERVER" ]; then
       grunt build
       curl \
         -F "react=@build/react.js" \
@@ -26,16 +29,9 @@ after_script:
     fi
 env:
   matrix:
-  - TEST_TYPE=test:full
+  - TEST_TYPE=test
   - TEST_TYPE=lint
-  - TEST_TYPE=perf:full
-  - TEST_TYPE=test:coverage
-  - TEST_TYPE=test:webdriver:saucelabs BROWSER_NAME=ie11
-  - TEST_TYPE=test:webdriver:saucelabs BROWSER_NAME=ie10
-  - TEST_TYPE=test:webdriver:saucelabs BROWSER_NAME=ie9
-  - TEST_TYPE=test:webdriver:saucelabs BROWSER_NAME=ie8
-  - TEST_TYPE=test:webdriver:saucelabs:ios
-  - TEST_TYPE=test:webdriver:saucelabs BROWSER_NAME=safari
+  - TEST_TYPE=test:webdriver:saucelabs:modern
   global:
   # SERVER
   - secure: qPvsJ46XzGrdIuPA70b55xQNGF8jcK7N1LN5CCQYYocXLa+fBrl+fTE77QvehOPhqwJXcj6kOxI+sY0KrVwV7gmq2XY2HZGWUSCxTN0SZlNIzqPA80Y7G/yOjA4PUt8LKgP+8tptyhTAY56qf+hgW8BoLiKOdztYF2p+3zXOLuA=
@@ -47,6 +43,7 @@ matrix:
     - env: TEST_TYPE=lint
     - env: TEST_TYPE=test:coverage
     - env: TEST_TYPE=perf:full
+    - env: TEST_TYPE=test:webdriver:saucelabs:modern
     - env: TEST_TYPE=test:webdriver:saucelabs BROWSER_NAME=ie11
     - env: TEST_TYPE=test:webdriver:saucelabs BROWSER_NAME=ie10
     - env: TEST_TYPE=test:webdriver:saucelabs BROWSER_NAME=ie9

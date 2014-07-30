@@ -1,4 +1,4 @@
-# [React](http://facebook.github.io/react) [![Build Status](https://travis-ci.org/facebook/react.png?branch=master)](https://travis-ci.org/facebook/react)
+# [React](http://facebook.github.io/react) [![Build Status](https://travis-ci.org/facebook/react.svg?branch=master)](https://travis-ci.org/facebook/react)
 
 React is a JavaScript library for building user interfaces.
 
@@ -7,10 +7,6 @@ React is a JavaScript library for building user interfaces.
 * **Data flow:** React implements one-way reactive data flow which reduces boilerplate and is easier to reason about than traditional data binding.
 
 [Learn how to use React in your own project.](http://facebook.github.io/react/docs/getting-started.html)
-
-## The `react` npm package has recently changed!
-
-If you're looking for jeffbski's [React.js](https://github.com/jeffbski/autoflow) project, it's now in `npm` as `autoflow` rather than `react`.
 
 ## Examples
 
@@ -40,12 +36,12 @@ The fastest way to get started is to serve JavaScript from the CDN (also availab
 
 ```html
 <!-- The core React library -->
-<script src="http://fb.me/react-0.9.0.js"></script>
+<script src="http://fb.me/react-0.11.0.js"></script>
 <!-- In-browser JSX transformer, remove when pre-compiling JSX. -->
-<script src="http://fb.me/JSXTransformer-0.9.0.js"></script>
+<script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
 ```
 
-We've also built a [starter kit](http://facebook.github.io/react/downloads/react-0.9.0.zip) which might be useful if this is your first time using React. It includes a webpage with an example of using React with live code.
+We've also built a [starter kit](http://facebook.github.io/react/downloads/react-0.11.0.zip) which might be useful if this is your first time using React. It includes a webpage with an example of using React with live code.
 
 If you'd like to use [bower](http://bower.io), it's as easy as:
 
@@ -89,6 +85,8 @@ We use grunt to automate many tasks. Run `grunt -h` to see a mostly complete lis
 grunt test
 # Build and run tests in your browser
 grunt test --debug
+# For speed, you can use fasttest and add --filter to only run one test
+grunt fasttest --filter=ReactIdentity
 # Lint the code with JSHint
 grunt lint
 # Wipe out build directory

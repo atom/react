@@ -6,7 +6,7 @@ permalink: reconciliation.html
 prev: special-non-dom-attributes.html
 ---
 
-React key design decision is to make the API seem like it re-renders the whole app on every update. This makes writing applications a lot easier but is also an incredible challenge to make it tractable. This article explains how with powerful heuristics we managed to turn a O(n<sup>3</sup>) problem into a O(n) one.
+React's key design decision is to make the API seem like it re-renders the whole app on every update. This makes writing applications a lot easier but is also an incredible challenge to make it tractable. This article explains how with powerful heuristics we managed to turn a O(n<sup>3</sup>) problem into a O(n) one.
 
 
 ## Motivation
@@ -76,7 +76,7 @@ After the attributes have been updated, we recurse on all the children.
 
 ### Custom Components
 
-We decided that the two custom components are the same. Since components are stateful, we cannot just use the new component and call it a day. React takes all the attributes from the new component and call `component[Will/Did]ReceiveProps()` on the previous one.
+We decided that the two custom components are the same. Since components are stateful, we cannot just use the new component and call it a day. React takes all the attributes from the new component and calls `component[Will/Did]ReceiveProps()` on the previous one.
 
 The previous component is now operational. Its `render()` method is called and the diff algorithm restarts with the new result and the previous result.
 
@@ -85,7 +85,7 @@ The previous component is now operational. Its `render()` method is called and t
 
 ### Problematic Case
 
-In order to do children reconciliation, React adopts a very naive approach. It goes over the list of children both at the same time and whenever there's a difference generates a mutation.
+In order to do children reconciliation, React adopts a very naive approach. It goes over both lists of children at the same time and generates a mutation whenever there's a difference.
 
 For example if you add an element at the end:
 
