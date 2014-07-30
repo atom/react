@@ -172,6 +172,10 @@ var ReactEventListener = {
       return;
     }
 
+    if (nativeEvent.reactSkipEventDispatch) {
+      return;
+    }
+
     var bookKeeping = TopLevelCallbackBookKeeping.getPooled(
       topLevelType,
       nativeEvent
