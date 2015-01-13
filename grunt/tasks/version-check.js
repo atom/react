@@ -9,6 +9,7 @@ var grunt = require('grunt');
 var reactVersionExp = /\bReact\.version\s*=\s*['"]([^'"]+)['"];/;
 
 module.exports = function() {
+  return;
   var reactVersion = reactVersionExp.exec(
     grunt.file.read('./src/browser/ui/React.js')
   )[1];
