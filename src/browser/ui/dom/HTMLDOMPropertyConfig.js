@@ -112,6 +112,7 @@ var HTMLDOMPropertyConfig = {
     mediaGroup: null,
     method: null,
     min: null,
+    mini: HAS_BOOLEAN_VALUE,
     multiple: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     muted: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     name: null,
