@@ -43,6 +43,8 @@ var ReactDOM = mapObject({
   area: 'area',
   article: 'article',
   aside: 'aside',
+  "atom-panel": false,
+  "atom-text-editor": false,
   audio: 'audio',
   b: 'b',
   base: 'base',
